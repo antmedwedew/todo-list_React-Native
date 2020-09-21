@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
-import { StyleSheet, View, Alert } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import { Navbar } from './src/components/Navbar'
 import { MainScreen } from './src/screens/MainScreen'
 import { TodoScreen } from './src/screens/TodoScreen'
 
 export default function App() {
 
-  const [todos, setTodos] = useState([])
+  const [todos, setTodos] = useState([{id: '1', title: 'setting page'}])
   const [todoId, setTodoId] = useState(null)
 
   const addTodo = (title)=> {
@@ -20,24 +20,7 @@ export default function App() {
   }
 
   const removeTodo = id => {
-    Alert.alert(
-      'Удаление задачи',
-      'Вы точно хотите удалить задачу?',
-      [
-        {
-          text: 'Нет',
-          style: 'cancel'
-        },
-        { 
-          text: 'Да', 
-          onPress: () => {
-            setTodoId(null),
-            setTodos(prev => prev.filter(todo => todo.id !== id))
-          } 
-        }
-      ],
-      { cancelable: false }
-    );
+    setTodos(prev => prev.filter(todo => todo.id !== id))
   }
 
   let content = (
@@ -51,11 +34,7 @@ export default function App() {
 
   if (todoId) {
     const selectedTodo = todos.find(todo => todo.id === todoId)
-    content = <TodoScreen 
-                goBack={() => setTodoId(null)} 
-                todo={selectedTodo} 
-                onRemove={removeTodo}
-              />
+    content = <TodoScreen goBack={() => setTodoId(null)} todo={selectedTodo}/>
   }
 
   return (
