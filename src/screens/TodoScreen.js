@@ -13,35 +13,35 @@ export const TodoScreen = ({ goBack, todo, onRemove, onSave }) => {
     setModal(false)
   }
 
-    return (
-      <View>
+  return (
+    <View>
 
-        <EditModal 
-          value={todo.title} 
-          visible={modal} 
-          onCancel={() => setModal(false)}
-          onSave={saveHandler}
-        />
+      <EditModal 
+        value={todo.title} 
+        visible={modal} 
+        onCancel={() => setModal(false)}
+        onSave={saveHandler}
+      />
 
-        <AppCard>
-          <Text style={styles.title}>{todo.title}</Text>
-          <View style={styles.cardButton}>
-            <Button 
-              title='Редактировать'
-              onPress={() => setModal(true)}
-            />
-          </View>
-        </AppCard>
-        <View style={styles.buttons}>
-          <View style={styles.button}>
-            <Button title='Назад' color={THEME.GREY_COLOR} onPress={goBack}/>
-          </View>
-          <View style={styles.button}>
-            <Button title='Удалить' color={THEME.DANGER_COLOR} onPress={() => onRemove(todo.id) }/> 
-          </View>
+      <AppCard>
+        <Text style={styles.title}>{todo.title}</Text>
+        <View style={styles.cardButton}>
+          <Button 
+            title='Редактировать'
+            onPress={() => setModal(true)}
+          />
+        </View>
+      </AppCard>
+      <View style={styles.buttons}>
+        <View style={styles.button}>
+          <Button title='Назад' color={THEME.GREY_COLOR} onPress={goBack}/>
+        </View>
+        <View style={styles.button}>
+          <Button title='Удалить' color={THEME.DANGER_COLOR} onPress={() => onRemove(todo.id) }/> 
         </View>
       </View>
-    )
+    </View>
+  )
 }
 
 const styles = StyleSheet.create({
