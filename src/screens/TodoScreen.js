@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { View, StyleSheet, Button } from 'react-native'
+import { View, StyleSheet, Dimensions} from 'react-native'
 import { AppCard } from '../components/ui/AppCard'
 import { THEME } from '../theme'
 import { EditModal } from '../components/EditModal'
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     marginTop: 15
   },
   button: {
-    width: '35%'
+    width: Dimensions.get('window').width / 3
   },
   title: {
     fontSize: 20,

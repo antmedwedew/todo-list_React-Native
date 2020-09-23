@@ -46,6 +46,7 @@ const styles = StyleSheet.create({
 		paddingHorizontal: 5
 	},
 	btnText: {
-		color: '#fff'
+		color: '#fff',
+		fontSize: 16
 	}
 })

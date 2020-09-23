@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, StyleSheet, FlatList } from 'react-native'
+import { View, StyleSheet, FlatList, Dimensions } from 'react-native'
 import { MaterialCommunityIcons } from '@expo/vector-icons'; 
 import { AddTodo } from '../components/AddTodo'
 import { Todo } from '../components/Todo'
@@ -39,6 +39,6 @@ const styles = StyleSheet.create({
   iconWrapp: {
     justifyContent: 'center',
     alignItems: 'center',
-    height: '85%'
+    height: Dimensions.get('window').height / 1.5
   },
 })
