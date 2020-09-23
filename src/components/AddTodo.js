@@ -1,5 +1,7 @@
 import React, {useState} from 'react'
-import { View, StyleSheet, TextInput, Button, Alert } from 'react-native'
+import { Entypo } from '@expo/vector-icons'; 
+import { View, StyleSheet, TextInput, Alert, Keyboard } from 'react-native'
+import { AppTextBold } from './ui/AppTextBold';
 
 export const AddTodo = ({ onAddTodo }) => {
 
@@ -12,6 +14,7 @@ export const AddTodo = ({ onAddTodo }) => {
 		}
 		onAddTodo(value)
 		setValue('')
+		Keyboard.dismiss()
 	}
 
 	return (
@@ -22,10 +25,7 @@ export const AddTodo = ({ onAddTodo }) => {
 				value={value}
 				placeholder='Введите название задачи'
 			/>
-			<Button 
-				title='Добавить'
-				onPress={pressHandler}
-			/>
+			<Entypo.Button name='plus' onPress={pressHandler}><AppTextBold style={styles.btnText}>Добавить</AppTextBold></Entypo.Button>
 		</View>
 	)
 }
@@ -37,12 +37,15 @@ const styles = StyleSheet.create({
 		marginBottom: 15
 	},
 	input: {
-		width: '75%',
+		width: '65%',
 		borderBottomWidth: 2,
 		borderColor: '#000',
 		borderStyle: 'solid',
 		marginRight: 10,
-		fontSize: 18,
+		fontSize: 16,
 		paddingHorizontal: 5
+	},
+	btnText: {
+		color: '#fff'
 	}
 })

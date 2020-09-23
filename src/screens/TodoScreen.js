@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
-import { View, Text, StyleSheet, Button } from 'react-native'
+import { View, StyleSheet, Button } from 'react-native'
 import { AppCard } from '../components/ui/AppCard'
 import { THEME } from '../theme'
 import { EditModal } from '../components/EditModal'
+import { AppText } from '../components/ui/AppText'
+import { AppButton } from '../components/ui/AppButton'
 
 export const TodoScreen = ({ goBack, todo, onRemove, onSave }) => {
 
@@ -24,20 +26,17 @@ export const TodoScreen = ({ goBack, todo, onRemove, onSave }) => {
       />
 
       <AppCard>
-        <Text style={styles.title}>{todo.title}</Text>
+        <AppText style={styles.title}>{todo.title}</AppText>
         <View style={styles.cardButton}>
-          <Button 
-            title='Редактировать'
-            onPress={() => setModal(true)}
-          />
+          <AppButton onPress={() => setModal(true)}>Редактировать</AppButton>
         </View>
       </AppCard>
       <View style={styles.buttons}>
         <View style={styles.button}>
-          <Button title='Назад' color={THEME.GREY_COLOR} onPress={goBack}/>
+          <AppButton color={THEME.GREY_COLOR} onPress={goBack}>Назад</AppButton>
         </View>
         <View style={styles.button}>
-          <Button title='Удалить' color={THEME.DANGER_COLOR} onPress={() => onRemove(todo.id) }/> 
+          <AppButton color={THEME.DANGER_COLOR} onPress={() => onRemove(todo.id)}>Удалить</AppButton> 
         </View>
       </View>
     </View>

@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
-import { View, TextInput, StyleSheet, Button, Modal, Alert } from 'react-native'
+import { View, TextInput, StyleSheet, Modal, Alert, Keyboard } from 'react-native'
 import { THEME } from '../theme'
+import { AppButton } from './ui/AppButton'
 
 export const EditModal = ({ visible, onCancel, value, onSave }) => {
 
@@ -11,6 +12,7 @@ export const EditModal = ({ visible, onCancel, value, onSave }) => {
       Alert.alert('Ошибка!', 'Строка не может быть пустой!')
     } else {
       onSave(title)
+      Keyboard.dismiss()
     }
   }
 
@@ -25,8 +27,8 @@ export const EditModal = ({ visible, onCancel, value, onSave }) => {
         />
         
         <View style={styles.buttons}>
-          <Button title="Отменить" onPress={onCancel} color={THEME.DANGER_COLOR}/>
-          <Button title="Сохранить" onPress={saveHandler} />
+          <AppButton onPress={onCancel} color={THEME.DANGER_COLOR}>Отменить</AppButton>
+          <AppButton onPress={saveHandler}>Сохранить</AppButton>
         </View>
       </View>
     </Modal>
@@ -42,7 +44,7 @@ const styles = StyleSheet.create({
   input: {
     fontSize: 18,
     padding: 10,
-    borderBottomColor: THEME.MAIN_COLOR,
+    borderBottomColor: '#000',
     borderBottomWidth: 2,
     width: '80%'
   },

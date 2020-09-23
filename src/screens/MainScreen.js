@@ -1,7 +1,10 @@
 import React from 'react'
-import { View, StyleSheet, FlatList, Image } from 'react-native'
+import { View, StyleSheet, FlatList } from 'react-native'
+import { MaterialCommunityIcons } from '@expo/vector-icons'; 
 import { AddTodo } from '../components/AddTodo'
 import { Todo } from '../components/Todo'
+import { THEME } from '../theme';
+import { AppText } from '../components/ui/AppText'
 
 export const MainScreen = ({ addTodo, todos, removeTodo, openTodo }) => {
 
@@ -16,8 +19,9 @@ export const MainScreen = ({ addTodo, todos, removeTodo, openTodo }) => {
 
   if (todos.length === 0) {
     content = (
-      <View style={styles.imgWrapp}>
-        <Image style={styles.image} source={require('../../assets/no-items.png')} />
+      <View style={styles.iconWrapp}>
+        <MaterialCommunityIcons name="format-list-bulleted" size={50} color={THEME.GREY_COLOR} />
+        <AppText color={THEME.GREY_COLOR}>Список пуст</AppText>
       </View>
     )
   }
@@ -32,14 +36,9 @@ export const MainScreen = ({ addTodo, todos, removeTodo, openTodo }) => {
 }
 
 const styles = StyleSheet.create({
-  imgWrapp: {
+  iconWrapp: {
     justifyContent: 'center',
     alignItems: 'center',
-    height: 300
+    height: '85%'
   },
-  image: {
-    width: '100%',
-    height: '100%',
-    resizeMode: 'contain',
-  }
 })
