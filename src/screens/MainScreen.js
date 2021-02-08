@@ -39,7 +39,7 @@ export const MainScreen = ({ addTodo, todos, removeTodo, openTodo }) => {
 
   if (todos.length === 0) {
     content = (
-      <View style={styles.iconWrapp} height={deviceHeight}>
+      <View style={styles.iconWrap} height={deviceHeight}>
         <MaterialCommunityIcons name="format-list-bulleted" size={50} color={THEME.GREY_COLOR} />
         <AppText color={THEME.GREY_COLOR}>Список пуст</AppText>
       </View>
@@ -56,7 +56,7 @@ export const MainScreen = ({ addTodo, todos, removeTodo, openTodo }) => {
 }
 
 const styles = StyleSheet.create({
-  iconWrapp: {
+  iconWrap: {
     justifyContent: 'center',
     alignItems: 'center'
   },
