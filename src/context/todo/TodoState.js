@@ -1,16 +1,26 @@
 import React, {useReducer} from 'react'
+import { ADD_TODO, REMOVE_TODO, UPDATE_TODO } from '../types'
 import {TodoContext} from './todoContext'
-import {todoReducer} from "./todoReducer";
+import {todoReducer} from './todoReducer'
 
 export const TodoState = ({ children }) => {
-    const initialState = {
-        todos: []
-    }
+    const initialState = {todos: []}
     const [state, dispatch] = useReducer(todoReducer, initialState)
 
-    return <TodoContext.Provider
-                value={{todos: state.todos}}
-            >
+    const addTodo = title => dispatch({type: ADD_TODO, title})
 
+    const removeTodo = id => dispatch({type: REMOVE_TODO, id})
+
+    const updateTodo = (id, title) => dispatch({type: UPDATE_TODO, id, title})
+
+    return <TodoContext.Provider
+                value={{
+                    todos: state.todos,
+                    addTodo, 
+                    removeTodo, 
+                    updateTodo
+                }}
+            >
+            {children}
             </TodoContext.Provider>
 }
