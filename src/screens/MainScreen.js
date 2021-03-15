@@ -1,13 +1,16 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext, createContext } from 'react'
 import { View, StyleSheet, FlatList, Dimensions } from 'react-native'
 import { MaterialCommunityIcons } from '@expo/vector-icons'; 
 import { AddTodo } from '../components/AddTodo'
 import { Todo } from '../components/Todo'
 import { THEME } from '../theme';
 import { AppText } from '../components/ui/AppText'
+import { TodoContext } from '../context/todo/todoContext';
+import { ScreenContext } from '../context/screen/screenContex';
 
-export const MainScreen = ({ addTodo, todos, removeTodo, openTodo }) => {
-
+export const MainScreen = () => {
+  const {addTodo, todos, removeTodo} = useContext(TodoContext)
+  const {changeScreen} = useContext(ScreenContext)
   const [deviceHeight, setDeviceHeight] = useState(Dimensions.get('window').height / 1.5)
 
   // Render update component icon center
@@ -32,7 +35,7 @@ export const MainScreen = ({ addTodo, todos, removeTodo, openTodo }) => {
         keyExtractor={item => item.id.toString()} 
         data={todos}
         renderItem={({ item })=> (
-          <Todo todo={item} onRemove={removeTodo} onOpen={openTodo}/>)}
+          <Todo todo={item} onRemove={removeTodo} onOpen={changeScreen}/>)}
       />
     </View>
   )

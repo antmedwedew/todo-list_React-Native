@@ -1,23 +1,27 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { View, StyleSheet, Dimensions} from 'react-native'
 import { AppCard } from '../components/ui/AppCard'
 import { THEME } from '../theme'
 import { EditModal } from '../components/EditModal'
 import { AppText } from '../components/ui/AppText'
 import { AppButton } from '../components/ui/AppButton'
+import { TodoContext } from '../context/todo/todoContext'
+import { ScreenContext } from '../context/screen/screenContex'
 
-export const TodoScreen = ({ goBack, todo, onRemove, onSave }) => {
+export const TodoScreen = () => {
+  const {todos ,updateTodo, removeTodo} = useContext(TodoContext);
+  const {todoId, changeScreen} = useContext(ScreenContext);
+  const [modal, setModal] = useState(false);
 
-  const [modal, setModal] = useState(false)
+  const todo = todos.find(t => t.id === todoId)
 
   const saveHandler = title => {
-    onSave(todo.id, title)
+    updateTodo(todo.id, title)
     setModal(false)
   }
 
   return (
     <View>
-
       <EditModal 
         value={todo.title} 
         visible={modal} 
@@ -33,10 +37,10 @@ export const TodoScreen = ({ goBack, todo, onRemove, onSave }) => {
       </AppCard>
       <View style={styles.buttons}>
         <View style={styles.button}>
-          <AppButton color={THEME.GREY_COLOR} onPress={goBack}>Назад</AppButton>
+          <AppButton color={THEME.GREY_COLOR} onPress={() => changeScreen(null)}>Назад</AppButton>
         </View>
         <View style={styles.button}>
-          <AppButton color={THEME.DANGER_COLOR} onPress={() => onRemove(todo.id)}>Удалить</AppButton> 
+          <AppButton color={THEME.DANGER_COLOR} onPress={() => removeTodo(todo.id)}>Удалить</AppButton> 
         </View>
       </View>
     </View>
